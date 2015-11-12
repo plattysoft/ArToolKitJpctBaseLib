@@ -15,6 +15,9 @@ import java.util.List;
 
 /**
  * Created by portales on 12/11/15.
+ *
+ * 3D Object that is anchored to a marker
+ *
  */
 public class TrackableObject3d extends Object3D {
 
@@ -33,6 +36,13 @@ public class TrackableObject3d extends Object3D {
         addChild(child);
     }
 
+    /**
+     * Loads a model on .3ds format and adds it as a child of the trackable object
+     *
+     * @param c A context, used to access the assets directory
+     * @param path The path to the .3ds inside the assets directory (i.e. model.3ds)
+     * @param scale The scale to be applied when loading the model
+     */
     public void add3DSModel(Context c, String path, float scale) {
         try {
             Object3D [] object3D = Loader.load3DS(c.getAssets().open(path), scale);
@@ -44,11 +54,20 @@ public class TrackableObject3d extends Object3D {
         }
     }
 
+    /**
+     * Internal call used by ArJpctRenderer that registers the marker into ARToolKit
+     * It is called automatically during the initialization of the AR Scene
+     * @return
+     */
     public boolean registerMarker() {
         mMarkerId = ARToolKit.getInstance().addMarker(mMarkerString);
         return mMarkerId != -1;
     }
 
+    /**
+     * Updates the position and rotation of the object to the one on the marker
+     * This is called automatically by ArJpctRenderer before rendering each frame
+     */
     public void updateMarkerTransformation() {
         // Update the position and rotation of the trackable object
         boolean markerVisible = ARToolKit.getInstance().queryMarkerVisible(mMarkerId);
@@ -85,7 +104,7 @@ public class TrackableObject3d extends Object3D {
     }
 
     /**
-     * Add to the world, including all the children
+     * Add the object to the world, including all the children
      * @param world
      */
     public void addToWorld(World world) {

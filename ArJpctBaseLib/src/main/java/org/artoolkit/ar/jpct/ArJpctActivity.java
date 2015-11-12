@@ -26,8 +26,16 @@ public abstract class ArJpctActivity extends ARActivity {
         return list;
     }
 
+    /**
+     * Override this method to provide the list of objects that are to be tracked
+     * @param list
+     */
     protected abstract void populateTrackableObjects(List<TrackableObject3d> list);
 
+    /**
+     * Override this method to add extra configuration to the world such as ambient light, etc
+     * @param world
+     */
     public abstract void configureWorld(World world);
 
 

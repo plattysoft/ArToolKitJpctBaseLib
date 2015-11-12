@@ -31,7 +31,9 @@ public class ArJcptRenderer extends ARRenderer {
     }
 
     /**
-     * Markers can be configured here.
+     * Configuration of the AR Scene
+     * Initializes jPCT and gets the trackable objects list
+     * Registers the markers and adds the objects to the world
      */
     @Override
     public boolean configureARScene() {
@@ -54,12 +56,11 @@ public class ArJcptRenderer extends ARRenderer {
         for (int i=0; i<mTrackableObjects.size(); i++) {
             TrackableObject3d trackableObject = mTrackableObjects.get(i);
             // Load the marker
-            boolean success = trackableObject.registerMarker();
-            if (!success) {
+            if (! trackableObject.registerMarker() ) {
+                // If there was a problem, return false
                 return false;
             }
             // Add the object to the world, note that mWorld.addObject is not recursive
-            // So we do it ourselves
             trackableObject.addToWorld(mWorld);
         }
 
@@ -75,7 +76,9 @@ public class ArJcptRenderer extends ARRenderer {
     }
 
     /**
-     * Override the draw function from ARRenderer.
+     * Override the draw function from ARRenderer
+     * This one sets the correct position and orientation from the camera
+     * For each trackable object, checks if the marker is visible and if so, updates the object
      */
     @Override
     public final void draw(GL10 gl) {
