@@ -99,6 +99,15 @@ public class ArJcptRenderer extends ARRenderer {
         projMatrix.setDump(projection);
         SimpleVector translation = projMatrix.getTranslation();
 
+        // Calculate FOV
+        float vFov = (float) Math.atan2(1, projection[5])*2;
+        mCamera.setYFovAngle(vFov);
+        float aspect = projection[5] / projection[0];
+        // hFOV = 2 * Math.atan( Math.tan( vFOV / 2 ) * aspect );
+        float fov = (float) (2 * Math.atan2(mCamera.getYFOV(), 2 ) * aspect);
+
+        mCamera.setFovAngle(fov);
+
         SimpleVector dir = projMatrix.getZAxis();
         SimpleVector up = projMatrix.getYAxis();
         mCamera.setPosition(translation);

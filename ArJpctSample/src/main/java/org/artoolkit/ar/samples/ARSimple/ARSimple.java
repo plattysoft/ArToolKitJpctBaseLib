@@ -103,7 +103,7 @@ public class ARSimple extends ArJpctActivity {
         light.setIntensity(0, 0, 255);
         light.setPosition(new SimpleVector(0, 0, 100));
         tckobj.addLight(light);
-        
+
         list.add(tckobj);
 
         TrackableObject3d trackablePlane = new TrackableObject3d("single;Data/patt.kanji;80", getPlane());
