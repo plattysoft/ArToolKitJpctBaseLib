@@ -235,11 +235,8 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
     	
 	}
 
-    public float getCameraFov() {
-        return camera.getParameters().getHorizontalViewAngle();
+    public Camera.Parameters getCameraParameters() {
+        return camera.getParameters();
     }
 
-    public float getCameraYFov() {
-        return camera.getParameters().getVerticalViewAngle();
-    }
 }

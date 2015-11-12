@@ -63,6 +63,7 @@ import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.rendering.ARRenderer;
 import org.artoolkit.ar.jpct.ArJpctActivity;
+import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
 
 import java.io.IOException;
@@ -73,7 +74,9 @@ import java.util.List;
  */
 public class ARSimple extends ArJpctActivity {
 
-	@Override
+    private TrackableLight mLight;
+
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);      
 		setContentView(R.layout.main); 
@@ -88,15 +91,30 @@ public class ARSimple extends ArJpctActivity {
 	}
 
     public void configureWorld(World world) {
-        world.setAmbientLight(100, 255, 255);
+        world.setAmbientLight(150, 150, 150);
 //        Light light = new Light(world);
 //        light.setIntensity(100, 255, 255);
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
-        list.add(new TrackableObject3d("single;Data/patt.hiro;80", getCube()));
-        list.add(new TrackableObject3d("single;Data/patt.kanji;80", getPlane()));
-	}
+        TrackableObject3d tckobj = new TrackableObject3d("single;Data/patt.hiro;80", getCube());
+
+        TrackableLight light = new TrackableLight();
+        light.setIntensity(0, 0, 255);
+        light.setPosition(new SimpleVector(0, 0, 100));
+        tckobj.addLight(light);
+        
+        list.add(tckobj);
+
+        TrackableObject3d trackablePlane = new TrackableObject3d("single;Data/patt.kanji;80", getPlane());
+
+        light = new TrackableLight();
+        light.setIntensity(255, 0, 0);
+
+        trackablePlane.addLight(light);
+
+        list.add(trackablePlane);
+    }
 
     private Object3D getCube() {
         int scale = 40;
@@ -108,7 +126,7 @@ public class ARSimple extends ArJpctActivity {
     }
 
     private Object3D getPlane() {
-        Object3D object3D = Primitives.getPlane(2, 40);
+        Object3D object3D = Primitives.getPlane(2, 60);
         // Planes are rotated 180 degrees, so we need to flip them
         object3D.rotateX((float) Math.PI);
         // Load the AR Toolkit texture on top of the plane

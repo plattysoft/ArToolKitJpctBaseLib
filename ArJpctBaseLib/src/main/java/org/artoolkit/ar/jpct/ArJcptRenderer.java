@@ -42,10 +42,21 @@ public class ArJcptRenderer extends ARRenderer {
         mCamera = mWorld.getCamera();
 
         // Set the FOV based on the camera parameters
-        float fov = mActivity.getCameraPreview().getCameraFov();
-        float yfov = mActivity.getCameraPreview().getCameraYFov();
+        // This FOW is correct when using
+        android.hardware.Camera.Parameters params = mActivity.getCameraPreview().getCameraParameters();
+        // Setting the FOV based on the camera params, this seems to work fine with 640x480
+        float fov = params.getHorizontalViewAngle();
+        float yfov = params.getVerticalViewAngle();
         mCamera.setFOV(mCamera.convertDEGAngleIntoFOV(fov));
         mCamera.setYFOV(mCamera.convertDEGAngleIntoFOV(yfov));
+
+        // Another way of calculating the FOV
+//        float focalLength = params.getFocalLength();
+//        float fovRadians = (float) (2 * Math.atan2(0.5f * params.getPreviewSize().width, focalLength));
+//        mCamera.setFovAngle(fovRadians);
+////        float fovyRadians = (float) (2 * Math.atan2(0.5f * params.getPreviewSize().height, focalLength));
+//        float fovyRadians = (float) (2 * Math.atan(mCamera.getFOV() / 2 * params.getPreviewSize().height / params.getPreviewSize().width));
+//        mCamera.setYFovAngle(fovyRadians);
 
         mActivity.configureWorld(mWorld);
 

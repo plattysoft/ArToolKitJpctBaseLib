@@ -2,6 +2,7 @@ package org.artoolkit.ar.jpct;
 
 import android.content.Context;
 
+import com.threed.jpct.Light;
 import com.threed.jpct.Loader;
 import com.threed.jpct.Matrix;
 import com.threed.jpct.Object3D;
@@ -25,6 +26,7 @@ public class TrackableObject3d extends Object3D {
     private int mMarkerId;
     private Matrix projMatrix = new Matrix();
     private List<Object3D> mChildren = new ArrayList<Object3D>();
+    private List<TrackableLight> mLights = new ArrayList<TrackableLight>();
 
     public TrackableObject3d(String markerString) {
         super(2); // 2 mx triangles, this object is the parent of all the trackable items
@@ -78,6 +80,13 @@ public class TrackableObject3d extends Object3D {
             clearTranslation();
             translate(projMatrix.getTranslation());
             setRotationMatrix(projMatrix);
+            // Also, update all the lights
+            for (int i=0; i<mLights.size(); i++) {
+                // Lights do not rotate
+                TrackableLight l = mLights.get(i);
+                l.update(projMatrix.getTranslation());
+                mLights.get(i).setVisibility(true);
+            }
         }
     }
 
@@ -86,6 +95,9 @@ public class TrackableObject3d extends Object3D {
         super.setVisibility(visible);
         for (int i=0; i<mChildren.size(); i++) {
             mChildren.get(i).setVisibility(visible);
+        }
+        for (int i=0; i<mLights.size(); i++) {
+            mLights.get(i).setVisibility(visible);
         }
     }
 
@@ -112,6 +124,12 @@ public class TrackableObject3d extends Object3D {
         for (int i=0; i<mChildren.size(); i++) {
             world.addObject(mChildren.get(i));
         }
+        for (int i=0; i<mLights.size(); i++) {
+            mLights.get(i).addToWorld(world);
+        }
     }
 
+    public void addLight(TrackableLight light) {
+        mLights.add(light);
+    }
 }
