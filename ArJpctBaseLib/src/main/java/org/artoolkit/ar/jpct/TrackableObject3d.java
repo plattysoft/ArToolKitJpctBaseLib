@@ -5,8 +5,6 @@ import android.content.Context;
 import com.threed.jpct.Loader;
 import com.threed.jpct.Matrix;
 import com.threed.jpct.Object3D;
-import com.threed.jpct.Primitives;
-import com.threed.jpct.SimpleVector;
 import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.ARToolKit;

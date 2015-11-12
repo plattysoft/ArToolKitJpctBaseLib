@@ -39,14 +39,11 @@ public class ArJcptRenderer extends ARRenderer {
         mWorld = new World();
         mCamera = mWorld.getCamera();
 
+        // Set the FOV based on the camera parameters
         float fov = mActivity.getCameraPreview().getCameraFov();
         float yfov = mActivity.getCameraPreview().getCameraYFov();
-
         mCamera.setFOV(mCamera.convertDEGAngleIntoFOV(fov));
         mCamera.setYFOV(mCamera.convertDEGAngleIntoFOV(yfov));
-//        mCamera.setFOV(1.38f);
-//        float fovy = (float) (2 * Math.atan(mCamera.getFOV() / 2 *  mBuffer.getHeight() / mBuffer.getWidth()));
-//        mCamera.setYFOV(fovy);
 
         mActivity.configureWorld(mWorld);
 
