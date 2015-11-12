@@ -91,9 +91,8 @@ public class ARSimple extends ArJpctActivity {
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
-        Object3D object3D = getPlane();
-        TrackableObject3d tckobj = new TrackableObject3d("single;Data/patt.hiro;80", object3D);
-        list.add(tckobj);
+        list.add(new TrackableObject3d("single;Data/patt.hiro;80", getCube()));
+        list.add(new TrackableObject3d("single;Data/patt.kanji;80", getPlane()));
 	}
 
     private Object3D getCube() {
