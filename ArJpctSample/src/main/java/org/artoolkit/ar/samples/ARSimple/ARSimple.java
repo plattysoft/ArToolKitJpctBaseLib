@@ -57,6 +57,8 @@ import com.threed.jpct.Loader;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.Primitives;
 import com.threed.jpct.SimpleVector;
+import com.threed.jpct.Texture;
+import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.rendering.ARRenderer;
@@ -86,8 +88,9 @@ public class ARSimple extends ArJpctActivity {
 	}
 
     public void configureWorld(World world) {
-        Light light = new Light(world);
-        light.setIntensity(100, 255, 255);
+        world.setAmbientLight(100, 255, 255);
+//        Light light = new Light(world);
+//        light.setIntensity(100, 255, 255);
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
@@ -106,7 +109,13 @@ public class ARSimple extends ArJpctActivity {
 
     private Object3D getPlane() {
         Object3D object3D = Primitives.getPlane(2, 40);
-        object3D.setBillboarding(true);
+        // Planes are rotated 180 degrees, so we need to flip them
+        object3D.rotateX((float) Math.PI);
+        // Load the AR Toolkit texture on top of the plane
+        Texture texture = new Texture(getResources().getDrawable(R.drawable.artoolkit_logo));
+        TextureManager.getInstance().addTexture("artoolkit", texture);
+
+        object3D.setTexture("artoolkit");
         return object3D;
     }
 }
