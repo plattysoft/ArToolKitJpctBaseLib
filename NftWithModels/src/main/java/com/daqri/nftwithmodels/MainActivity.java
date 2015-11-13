@@ -37,7 +37,7 @@ public class MainActivity extends ArJpctActivity {
 
     public void configureWorld(World world) {
         Config.farPlane = 2000;
-        world.setAmbientLight(150, 150, 150);
+        world.setAmbientLight(255, 255, 255);
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
@@ -49,10 +49,6 @@ public class MainActivity extends ArJpctActivity {
         texture = new Texture(getResources().getDrawable(R.drawable.moon_ground));
         TextureManager.getInstance().addTexture("moon_ground", texture);
 
-        TrackableLight light = new TrackableLight();
-        light.setIntensity(255, 255, 255);
-        light.setPosition(new SimpleVector(0, 0, 300));
-        tckobj.addLight(light);
         try {
             Object3D [] astronaut = Loader.load3DS(getAssets().open("astronaut1.3ds"), 5);
             astronaut[0].setOrigin(new SimpleVector(280, 200, 270));
