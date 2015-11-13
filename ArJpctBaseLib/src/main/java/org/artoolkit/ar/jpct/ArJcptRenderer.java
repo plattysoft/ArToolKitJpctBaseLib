@@ -25,6 +25,7 @@ public class ArJcptRenderer extends ARRenderer {
     private Camera mCamera;
     private FrameBuffer mBuffer;
     private Matrix projMatrix = new Matrix();
+    private boolean mFovSet;
 
     public ArJcptRenderer(ArJpctActivity arJpctActivity) {
         mActivity = arJpctActivity;
@@ -49,14 +50,6 @@ public class ArJcptRenderer extends ARRenderer {
         mCamera.setFOV(mCamera.convertDEGAngleIntoFOV(fov));
         mCamera.setYFOV(mCamera.convertDEGAngleIntoFOV(yfov));
 
-        // Another way of calculating the FOV
-//        float focalLength = params.getFocalLength();
-//        float fovRadians = (float) (2 * Math.atan2(0.5f * params.getPreviewSize().width, focalLength));
-//        mCamera.setFovAngle(fovRadians);
-////        float fovyRadians = (float) (2 * Math.atan2(0.5f * params.getPreviewSize().height, focalLength));
-//        float fovyRadians = (float) (2 * Math.atan(mCamera.getFOV() / 2 * params.getPreviewSize().height / params.getPreviewSize().width));
-//        mCamera.setYFovAngle(fovyRadians);
-
         mActivity.configureWorld(mWorld);
 
         // Get the activity list of trackable objects
@@ -75,6 +68,8 @@ public class ArJcptRenderer extends ARRenderer {
         }
 
         mWorld.buildAllObjects();
+
+        mFovSet = false;
 
         return true;
     }
@@ -98,13 +93,16 @@ public class ArJcptRenderer extends ARRenderer {
         projMatrix.setDump(projection);
         SimpleVector translation = projMatrix.getTranslation();
 
-        // Calculate FOV
-        float value1 = projection[5] + projection[9];
-        float vFov = (float) Math.atan2(1, value1)*2;
-        mCamera.setYFovAngle(vFov);
-        float aspect = value1 / (projection[0]);// + projection[8]);
-        float fov = (float) Math.atan2(1, projection[0]+projection[8])*2;
-        mCamera.setFovAngle(fov);
+        if (!mFovSet) {
+            // Calculate FOV based on projection values, but do it only once
+            float value1 = projection[5];
+            float vFov = (float) Math.atan2(1, value1)*2;
+            mCamera.setYFovAngle(vFov);
+            float aspect = projection[5] / projection[0];
+            float fov = (float) (2 * Math.atan2(mCamera.getYFOV() , 2 ) * aspect);
+            mCamera.setFovAngle(fov);
+            mFovSet = true;
+        }
 
         SimpleVector dir = projMatrix.getZAxis();
         SimpleVector up = projMatrix.getYAxis();
