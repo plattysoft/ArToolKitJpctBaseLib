@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def versionName = '0.9'
+
 android {
     compileSdkVersion 17
     buildToolsVersion "23.0.2"
@@ -14,6 +19,89 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+def siteUrl = 'https://github.com/plattysoft/ArToolKitJpctBaseLib'
+def gitUrl = 'https://github.com/plattysoft/ArToolKitJpctBaseLib.git'
+group = "org.artoolkit.ar.jpct"
+version = versionName
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "ArJpctBase"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["LGPL-3.0"]
+        dryRun = false
+        publish = false
+        version {
+            name = versionName //Bintray logical version name
+//            released = //Optional - Date of the version release. 2 possible values: date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ' OR a java.util.Date instance
+            vcsTag = versionName
+        }
+    }
+}
+
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                artifactId 'ArJpctBaseLib'
+                version = versionName
+                // Add your description here
+                name 'ArJpctBase'
+                description = 'This project provices an easy way to create AR applications for Android using ARToolKit and jPCT-AE together.'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0'
+                        url 'https://www.gnu.org/licenses/lgpl.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'plattysoft'
+                        name 'Raul Portales'
+                        email 'raul.portales@daqri.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task classesJar(type: Jar) {
+    //from android.sourceSets.main.java
+    from 'build/outputs/aar/ArJpctBaseLib-release.aar'
+    archiveName 'ArJpctBaseLib.aar'
+}
+
+artifacts {
+    archives sourcesJar
+    archives classesJar
 }
 
 dependencies {
