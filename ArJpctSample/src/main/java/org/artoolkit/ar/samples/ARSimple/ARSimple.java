@@ -52,8 +52,6 @@ package org.artoolkit.ar.samples.ARSimple;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.threed.jpct.Light;
-import com.threed.jpct.Loader;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.Primitives;
 import com.threed.jpct.SimpleVector;
@@ -61,22 +59,17 @@ import com.threed.jpct.Texture;
 import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 
-import org.artoolkit.ar.base.rendering.ARRenderer;
 import org.artoolkit.ar.jpct.ArJpctActivity;
 import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
 import org.artoolkit.ar.jpct.samples.ARSimple.R;
 
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 
 /**
  * A very simple example of extending ARActivity to create a new AR application.
  */
 public class ARSimple extends ArJpctActivity {
-
-    private TrackableLight mLight;
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,8 +87,6 @@ public class ARSimple extends ArJpctActivity {
 
     public void configureWorld(World world) {
         world.setAmbientLight(150, 150, 150);
-//        Light light = new Light(world);
-//        light.setIntensity(100, 255, 255);
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
