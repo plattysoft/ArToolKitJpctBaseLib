@@ -20,4 +20,5 @@ android {
 
 dependencies {
     compile project(':ArJpctBaseLib')
+//    compile 'org.artoolkit.ar.jpct:ArJpctBaseLib:0.9'
 }

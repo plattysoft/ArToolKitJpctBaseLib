@@ -61,7 +61,7 @@ install {
                 version = versionName
                 // Add your description here
                 name 'ArJpctBase'
-                description = 'This project provices an easy way to create AR applications for Android using ARToolKit and jPCT-AE together.'
+                description = 'This project provides an easy way to create AR applications for Android using ARToolKit and jPCT-AE together.'
                 url siteUrl
 
                 // Set your license
