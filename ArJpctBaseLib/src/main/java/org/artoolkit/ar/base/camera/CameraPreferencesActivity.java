@@ -39,8 +39,6 @@ package org.artoolkit.ar.base.camera;
 
 import java.util.List;
 
-import org.artoolkit.ar.base.R;
-
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -50,6 +48,8 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.util.Log;
+
+import org.artoolkit.ar.jpct.R;
 
 /**
  * CameraPreferencesActivity provides a menu which allows the camera and its

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.artoolkit.ar.base"
+      package="org.artoolkit.ar.jpct"
       android:versionCode="1"
       android:versionName="1.0">
     <uses-sdk android:targetSdkVersion="18" android:minSdkVersion="8"/>

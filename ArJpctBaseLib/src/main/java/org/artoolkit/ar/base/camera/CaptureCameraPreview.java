@@ -41,11 +41,7 @@ import java.io.IOException;
 import java.lang.RuntimeException;
 
 import org.artoolkit.ar.base.FPSCounter;
-import org.artoolkit.ar.base.R;
-//import java.util.List;
-
-
-
+import org.artoolkit.ar.jpct.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
