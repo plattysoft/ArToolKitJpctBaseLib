@@ -65,6 +65,7 @@ import org.artoolkit.ar.base.rendering.ARRenderer;
 import org.artoolkit.ar.jpct.ArJpctActivity;
 import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
+import org.artoolkit.ar.jpct.samples.ARSimple.R;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -88,7 +89,7 @@ public class ARSimple extends ArJpctActivity {
 	 */
 	@Override
 	protected FrameLayout supplyFrameLayout() {
-		return (FrameLayout)this.findViewById(R.id.mainLayout);    	
+		return (FrameLayout)this.findViewById(R.id.mainLayout);
 	}
 
     public void configureWorld(World world) {
