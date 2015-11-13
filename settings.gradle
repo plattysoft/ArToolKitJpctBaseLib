@@ -1,2 +1,2 @@
-include ':ArJpctBaseLib'
+include ':ArJpctBaseLib', ':NftWithModels'
 include ':ArJpctSample'
