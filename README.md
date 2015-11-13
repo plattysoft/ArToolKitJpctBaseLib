@@ -18,4 +18,5 @@ ARToolKit is provided under LGPL, and so is this wrapper.
 
 ## Other notes
 
-* The NTF project uses free available model from NASA website.
+* The NTF project uses free available model from NASA website
+* FOV is not read correctly on same cases, but seems to be working fine for 640x480 on most phones
