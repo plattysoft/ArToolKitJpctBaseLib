@@ -67,6 +67,7 @@ import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -107,12 +108,6 @@ public class ARSimple extends ArJpctActivity {
         list.add(tckobj);
 
         TrackableObject3d trackablePlane = new TrackableObject3d("single;Data/patt.kanji;80", getPlane());
-
-        light = new TrackableLight();
-        light.setIntensity(255, 0, 0);
-
-        trackablePlane.addLight(light);
-
         list.add(trackablePlane);
     }
 

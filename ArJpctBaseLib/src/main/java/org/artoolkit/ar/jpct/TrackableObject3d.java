@@ -2,7 +2,6 @@ package org.artoolkit.ar.jpct;
 
 import android.content.Context;
 
-import com.threed.jpct.Light;
 import com.threed.jpct.Loader;
 import com.threed.jpct.Matrix;
 import com.threed.jpct.Object3D;

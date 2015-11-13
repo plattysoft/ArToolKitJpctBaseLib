@@ -40,7 +40,6 @@ public class ArJcptRenderer extends ARRenderer {
         // Initialize the game world and the camera
         mWorld = new World();
         mCamera = mWorld.getCamera();
-
         // Set the FOV based on the camera parameters
         // This FOW is correct when using
         android.hardware.Camera.Parameters params = mActivity.getCameraPreview().getCameraParameters();
@@ -61,7 +60,7 @@ public class ArJcptRenderer extends ARRenderer {
         mActivity.configureWorld(mWorld);
 
         // Get the activity list of trackable objects
-        mTrackableObjects= mActivity.getTrackableObject3DList();
+        mTrackableObjects = mActivity.getTrackableObject3DList();
 
         // Load all the markers and add the objects to the world
         for (int i=0; i<mTrackableObjects.size(); i++) {
@@ -100,12 +99,11 @@ public class ArJcptRenderer extends ARRenderer {
         SimpleVector translation = projMatrix.getTranslation();
 
         // Calculate FOV
-        float vFov = (float) Math.atan2(1, projection[5])*2;
+        float value1 = projection[5] + projection[9];
+        float vFov = (float) Math.atan2(1, value1)*2;
         mCamera.setYFovAngle(vFov);
-        float aspect = projection[5] / projection[0];
-        // hFOV = 2 * Math.atan( Math.tan( vFOV / 2 ) * aspect );
-        float fov = (float) (2 * Math.atan2(mCamera.getYFOV(), 2 ) * aspect);
-
+        float aspect = value1 / (projection[0]);// + projection[8]);
+        float fov = (float) Math.atan2(1, projection[0]+projection[8])*2;
         mCamera.setFovAngle(fov);
 
         SimpleVector dir = projMatrix.getZAxis();

@@ -90,5 +90,4 @@ public class ARRenderer implements GLSurfaceView.Renderer {
     public void draw(GL10 gl) {
     	GLES10.glClear(GLES10.GL_COLOR_BUFFER_BIT | GLES10.GL_DEPTH_BUFFER_BIT);
     }
-    
 }

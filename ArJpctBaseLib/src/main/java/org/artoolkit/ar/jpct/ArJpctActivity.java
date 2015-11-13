@@ -1,19 +1,21 @@
 package org.artoolkit.ar.jpct;
 
-import android.widget.FrameLayout;
-
+import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.ARActivity;
 import org.artoolkit.ar.base.rendering.ARRenderer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * Created by portales on 11/11/15.
  */
 public abstract class ArJpctActivity extends ARActivity {
+
+    private static final String DUMMY_TEXTURE = "--dummy--";
 
     @Override
     protected ARRenderer supplyRenderer() {
@@ -24,6 +26,23 @@ public abstract class ArJpctActivity extends ARActivity {
         List<TrackableObject3d> list = new ArrayList<TrackableObject3d>();
         populateTrackableObjects(list);
         return list;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Remove all the textures from the texture managet
+        unloadTextures();
+    }
+
+    private void unloadTextures() {
+        HashSet<String> names = TextureManager.getInstance().getNames();
+        for (String name : names) {
+            // DO NOT remove the dummy texture
+            if (! name.equals(DUMMY_TEXTURE)) {
+                TextureManager.getInstance().removeTexture(name);
+            }
+        }
     }
 
     /**
