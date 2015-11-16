@@ -13,10 +13,11 @@ ARToolKit is provided under LGPL, and so is this wrapper.
 
 ## Notes about jPCT-AE
 
-* Note that textures need to be of a size that is multiple of 2
+* Textures are expecting a size that is multiple of 2 (unless you are using NPOTTexture)
 * The images should be placed under drawable-nodpi or the system will mess up the dimensions
 
 ## Other notes
 
+* ARToolKit uses milimeters as units. This is relevant when loading 3D Objects, consider the scale
 * The NTF project uses free available model from NASA website
 * FOV is not read correctly on same cases, but seems to be working fine for 640x480 on most phones
