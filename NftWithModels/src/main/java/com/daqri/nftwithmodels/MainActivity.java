@@ -67,7 +67,6 @@ public class MainActivity extends ArJpctActivity {
             e.printStackTrace();
         }
 
-        //
         list.add(tckobj);
     }
 }
