@@ -279,6 +279,16 @@ public class ARToolKit {
 		return NativeInterface.arwGetProjectionMatrix();
 	}
 
+	public void setMatrixCodeType(int type) {
+		if (!initedNative) return;
+		NativeInterface.arwSetMatrixCodeType(type);
+	}
+
+	public void setPatternDetectionMode(int mode) {
+		if (!initedNative) return;
+		NativeInterface.arwSetPatternDetectionMode(mode);
+	}
+
 	/**
 	 * Adds a new single marker to the set of currently active markers.
 	 * @param patt The path to the pattern file to load.
