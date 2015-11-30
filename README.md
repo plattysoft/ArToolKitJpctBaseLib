@@ -13,13 +13,16 @@ ARToolKit is provided under LGPL, and so is this wrapper.
 
 ## Configuration
 
-For Android Studio, you just need to add the following to the build.gradle of your project:
+For Android Studio, you just need to add the following to dependencies the build.gradle of your project:
 
 ```
-compile(group: 'org.artoolkit.ar.jpct', name: 'ArJpctBaseLib', version: '0.9', ext: 'aar')
+dependencies {
+    compile(group: 'org.artoolkit.ar.jpct', name: 'ArJpctBaseLib', version: '0.9', ext: 'aar')
+    [...]
+}
 ```
 
-For Eclipse you need to download the source code and add it as a library
+For Eclipse you need to download the source code and add it as a library.
 
 ## Samples
 
