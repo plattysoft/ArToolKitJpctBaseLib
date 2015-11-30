@@ -11,6 +11,20 @@ This project is an extension to the ARBaseLib project of ARToolkit.
 
 ARToolKit is provided under LGPL, and so is this wrapper.
 
+## Configuration
+
+For Android Studio, you just need to add the following to the build.gradle of your project:
+
+```compile(group: 'org.artoolkit.ar.jpct', name: 'ArJpctBaseLib', version: '0.9', ext: 'aar')
+
+For Eclipse you need to download the source code and add it as a library
+
+## Samples
+
+* ArJpctSample: A sample project displaying a cube over a hiro marker and a plane with a texture over a kanji marker
+* NftWithModels: Displays a textured plane and a 3D object over an NFT marker (Natural Feature Tracker - normal images)
+* CubeSample: Uses a special marker that is an array of markers in the geometry of a cube
+
 ## Notes about jPCT-AE
 
 * Textures are expecting a size that is multiple of 2 (unless you are using NPOTTexture)
@@ -18,6 +32,7 @@ ARToolKit is provided under LGPL, and so is this wrapper.
 
 ## Other notes
 
+* You can use this library exactly in the same way as you'd use ArBase, just extend from the ArBase classes (this can be handy if you want to have simpler gradle dependencies)
 * ARToolKit uses milimeters as units. This is relevant when loading 3D Objects, consider the scale
 * The NTF project uses free available model from NASA website
 * FOV is not read correctly on same cases, but seems to be working fine for 640x480 on most phones
