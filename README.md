@@ -13,7 +13,7 @@ ARToolKit is provided under LGPL, and so is this wrapper.
 
 ## Configuration
 
-For Android Studio, you just need to add the following to dependencies the build.gradle of your project:
+For Android Studio, you just need to add the following to dependencies of the __build.gradle__ of your project:
 
 ```
 dependencies {
