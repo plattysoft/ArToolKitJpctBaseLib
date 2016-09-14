@@ -143,4 +143,11 @@ public class TrackableObject3d extends Object3D {
     public void addLight(TrackableLight light) {
         mLights.add(light);
     }
+    /*
+    To see if the marker is visible on the scene or not.
+    */
+    public boolean isObjectVisible(){
+        boolean markerVisible = ARToolKit.getInstance().queryMarkerVisible(mMarkerId);
+        return markerVisible;
+    }
 }
