@@ -21,9 +21,9 @@ public class ArJcptRenderer extends ARRenderer {
     private final ArJpctActivity mActivity;
     private List<TrackableObject3d> mTrackableObjects;
 
-    private World mWorld;
-    private Camera mCamera;
-    private FrameBuffer mBuffer;
+    protected World mWorld;
+    protected Camera mCamera;
+    protected FrameBuffer mBuffer;
     private Matrix projMatrix = new Matrix();
     private boolean mFovSet;
 
@@ -117,5 +117,14 @@ public class ArJcptRenderer extends ARRenderer {
         mWorld.renderScene(mBuffer);
         mWorld.draw(mBuffer);
         mBuffer.display();
+    }
+
+    /**
+     * Get the world instance used by the renderer.
+     * May be null if configureARScene has not yet been called.
+     * @return the world instance used by the renderer.
+     */
+    public World getWorld() {
+        return mWorld;
     }
 }
