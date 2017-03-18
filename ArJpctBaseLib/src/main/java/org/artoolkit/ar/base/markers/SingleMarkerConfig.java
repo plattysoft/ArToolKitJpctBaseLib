@@ -2,6 +2,8 @@ package org.artoolkit.ar.base.markers;
 
 /**
  * A single marker configuration string.
+ *
+ * @author github.com/michaelboyles
  */
 public final class SingleMarkerConfig implements MarkerConfig
 {
