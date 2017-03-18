@@ -14,6 +14,7 @@ import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.ARToolKit;
 import org.artoolkit.ar.base.NativeInterface;
+import org.artoolkit.ar.base.markers.MultiMarkerConfig;
 import org.artoolkit.ar.jpct.ArJpctActivity;
 import org.artoolkit.ar.jpct.TrackableObject3d;
 
@@ -45,7 +46,7 @@ public class MainActivity extends ArJpctActivity {
         ARToolKit.getInstance().setPatternDetectionMode(NativeInterface.AR_MATRIX_CODE_DETECTION);
         ARToolKit.getInstance().setMatrixCodeType(NativeInterface.AR_MATRIX_CODE_3x3);
 
-        TrackableObject3d tckobj = new TrackableObject3d("multi;Data/cubeMarkerConfig.dat");
+        TrackableObject3d tckobj = new TrackableObject3d(new MultiMarkerConfig("Data/cubeMarkerConfig.dat"));
 
         Object3D object3D = Primitives.getCube(60);
         object3D.setTransparency(10);

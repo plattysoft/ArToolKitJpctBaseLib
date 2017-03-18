@@ -59,6 +59,7 @@ import com.threed.jpct.Texture;
 import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 
+import org.artoolkit.ar.base.markers.SingleMarkerConfig;
 import org.artoolkit.ar.jpct.ArJpctActivity;
 import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
@@ -90,7 +91,8 @@ public class ARSimple extends ArJpctActivity {
     }
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
-        TrackableObject3d tckobj = new TrackableObject3d("single;Data/patt.hiro;80", getCube());
+        TrackableObject3d tckobj = new TrackableObject3d(new SingleMarkerConfig("Data/patt.hiro", 80));
+        tckobj.addChild(getCube());
 
         TrackableLight light = new TrackableLight();
         light.setIntensity(0, 0, 255);
@@ -99,7 +101,9 @@ public class ARSimple extends ArJpctActivity {
 
         list.add(tckobj);
 
-        TrackableObject3d trackablePlane = new TrackableObject3d("single;Data/patt.kanji;80", getPlane());
+        TrackableObject3d trackablePlane = new TrackableObject3d(new SingleMarkerConfig("Data/patt.kanji", 80));
+        trackablePlane.addChild(getPlane());
+
         list.add(trackablePlane);
     }
 

@@ -6,7 +6,7 @@ def versionName = '0.9'
 
 android {
     compileSdkVersion 17
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 8
@@ -106,4 +106,5 @@ artifacts {
 
 dependencies {
     compile files('src/libs/jpct_ae.jar')
+    testCompile 'junit:junit:4.12'
 }

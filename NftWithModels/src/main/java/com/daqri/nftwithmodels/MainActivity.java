@@ -12,6 +12,7 @@ import com.threed.jpct.Texture;
 import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 
+import org.artoolkit.ar.base.markers.NFTMarkerConfig;
 import org.artoolkit.ar.jpct.ArJpctActivity;
 import org.artoolkit.ar.jpct.TrackableLight;
 import org.artoolkit.ar.jpct.TrackableObject3d;
@@ -42,7 +43,7 @@ public class MainActivity extends ArJpctActivity {
 
     protected void populateTrackableObjects(List<TrackableObject3d> list) {
         // Note: The NASA logo is really bad for tracking
-        TrackableObject3d tckobj = new TrackableObject3d("nft;Data/NASA;80");
+        TrackableObject3d tckobj = new TrackableObject3d(new NFTMarkerConfig("Data/NASA", 80));
 
         Texture texture = new Texture(getResources().getDrawable(R.drawable.astnt1_1));
         TextureManager.getInstance().addTexture("astnt1_1", texture);

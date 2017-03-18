@@ -8,6 +8,7 @@ import com.threed.jpct.Object3D;
 import com.threed.jpct.World;
 
 import org.artoolkit.ar.base.ARToolKit;
+import org.artoolkit.ar.base.markers.MarkerConfig;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,21 @@ public class TrackableObject3d extends Object3D {
     private boolean mPreviousVisibility;
     private OnVisibilityChangeListener mVisibilityChangeListener;
 
+    /**
+     * Constructor.
+     *
+     * @param markerConfig A marker configuration to use for this object.
+     */
+    public TrackableObject3d(MarkerConfig markerConfig) {
+        this(markerConfig.get());
+    }
+
+    /**
+     * Constructor.
+     *
+     * @deprecated Use TrackableObject3d(MarkerConfig)
+     */
+    @Deprecated
     public TrackableObject3d(String markerString) {
         super(2); // 2 mx triangles, this object is the parent of all the trackable items
         mMarkerString = markerString;
@@ -36,6 +52,12 @@ public class TrackableObject3d extends Object3D {
         mPreviousVisibility = false;
     }
 
+    /**
+     * Constructor.
+     *
+     * @deprecated Use TrackableObject3d(MarkerConfig) then addChild()
+     */
+    @Deprecated
     public TrackableObject3d(String markerString, Object3D child) {
         this(markerString);
         addChild(child);
